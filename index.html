@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faolany Beauty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..700;1,400..700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* --- CSS VARIABLES & THEME --- */
+        :root {
+            --primary-pink: #d2527f;
+            --light-pink: #fff0f3;
+            --bg-gradient: linear-gradient(135deg, #ffeef2 0%, #fef3f3 100%);
+            --text-dark: #2d2d2d;
+            --text-muted: #666666;
+            --star-color: #f39c12;
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --container-max: 1200px;
+            --transition-smooth: all 0.3s ease-in-out; 
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+
+        a {
+            text-transform: none;
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition-smooth);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: 90%;
+            max-width: var(--container-max);
+            margin: 0 auto;
+        }
+
+        /* --- TOP ANNOUNCEMENT BANNER --- */
+        .top-banner {
+            background-color: #fff5f6;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-dark);
+            border-bottom: 1px solid #fae1e5;
+        }
+        .top-banner span {
+            color: var(--primary-pink);
+            font-weight: 700;
+        }
+
+        /* --- HEADER & NAVIGATION --- */
+        header {
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .logo i {
+            color: var(--primary-pink);
+            font-size: 1.3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary-pink);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.1rem;
+            cursor: pointer;
+        }
+        .nav-icons i {
+            transition: var(--transition-smooth);
+        }
+        .nav-icons i:hover {
+            color: var(--primary-pink);
+        }
+
+        /* --- ACCOUNT MODAL --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 400px;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transform: translateY(-20px);
+            transition: var(--transition-smooth);
+        }
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+        .close-modal:hover {
+            color: var(--primary-pink);
+        }
+        .modal-box h2 {
+            font-family: var(--font-heading);
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 1.6rem;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: var(--font-body);
+            font-size: 0.9rem;
+        }
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary-pink);
+        }
+        .modal-box .btn-primary {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        /* Profile View inside Modal */
+        .profile-view {
+            text-align: center;
+        }
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--light-pink);
+            color: var(--primary-pink);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            margin: 0 auto 15px;
+            border: 2px solid var(--primary-pink);
+        }
+        .profile-info-item {
+            background: #f9f9f9;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+        .profile-info-item strong {
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            display: block;
+            text-transform: uppercase;
+        }
+        .btn-signout {
+            background: #f5f5f5;
+            color: var(--text-dark);
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            margin-top: 15px;
+            transition: var(--transition-smooth);
+        }
+        .btn-signout:hover {
+            background: #e5e5e5;
+            color: red;
+        }
+
+        /* --- SHOPPING CART DRAWER --- */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: var(--transition-smooth);
+        }
+        .cart-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            z-index: 2001;
+            transition: var(--transition-smooth);
+        }
+        .cart-overlay.active .cart-drawer {
+            right: 0;
+        }
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .cart-header h2 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--text-dark);
+        }
+        .close-cart {
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: var(--transition-smooth);
+        }
+        .close-cart:hover {
+            color: var(--primary-pink);
+        }
+        .cart-body {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .cart-footer {
+            padding: 25px;
+            border-top: 1px solid #f0f0f0;
+            background: #fafafa;
+        }
+        .cart-total-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+        .btn-pay {
+            width: 100%;
+            background-color: #e2e4e8;
+            color: #8a8d93;
+            padding: 16px;
+            border-radius: 4px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            border: none;
+            cursor: not-allowed;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: var(--bg-gradient);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+            max-width: 550px;
+        }
+
+        .hero-tagline {
+            color: var(--primary-pink);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h1 span {
+            color: var(--primary-pink);
+        }
+
+        .hero-content p {
+            color: var(--text-muted);
+            margin-bottom: 35px;
+            font-size: 1rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-pink);
+            color: #fff;
+            padding: 14px 30px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .btn-primary:hover {
+            background-color: #b83b68;
+        }
+
+        .btn-secondary {
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-secondary:hover {
+            color: var(--primary-pink);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+        }
+
+        .hero-image img {
+            max-height: 500px;
+            object-fit: contain;
+            border-radius: 20px;
+        }
+
+        /* --- VALUE PROPOSITIONS BAR --- */
+        .features-bar {
+            background-color: #fffefb;
+            padding: 30px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-item i {
+            font-size: 1.5rem;
+            color: var(--primary-pink);
+            background: var(--light-pink);
+            padding: 12px;
+            border-radius: 50%;
+        }
+
+        .feature-text h4 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .feature-text p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* --- SECTION STRUCTURE --- */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        .section-title::after {
+            content: "🌸";
+            display: block;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        /* --- CATEGORIES --- */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); 
+            gap: 20px;
+            text-align: center;
+        }
+
+        .category-card img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 4px solid transparent;
+            transition: var(--transition-smooth);
+            background-color: #f7f7f7;
+        }
+
+        .category-card:hover img {
+            border-color: var(--primary-pink);
+            transform: scale(1.05);
+        }
+
+        .category-card h3 {
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .category-card span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        /* --- BEST SELLERS (PRODUCTS) --- */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 20px;
+        }
+
+        .product-card {
+            position: relative;
+            background: #fff;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image-wrapper {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .product-image-wrapper img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+        }
+
+        .sale-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--primary-pink);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 3px;
+            text-transform: uppercase;
+            z-index: 2;
+        }
+
+        .product-info h3 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .product-rating {
+            font-size: 0.75rem;
+            color: var(--star-color);
+            margin-bottom: 6px;
+        }
+        .product-rating span {
+            color: var(--text-muted);
+            margin-left: 4px;
+        }
+
+        .product-price {
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .product-price .old-price {
+            font-size: 0.85rem;
+            color: #b5b5b5;
+            text-decoration: line-through;
+            font-weight: 400;
+            margin-left: 6px;
+        }
+
+        /* --- PROMO OFFERS --- */
+        .promo-section {
+            padding-top: 20px;
+        }
+        .promo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .promo-banner {
+            border-radius: 12px;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .promo-banner.skincare { background-color: #f7e6e8; }
+        .promo-banner.makeup { background-color: #f5ece5; }
+
+        .promo-content {
+            max-width: 50%;
+            z-index: 2;
+        }
+
+        .promo-content span {
+            color: var(--primary-pink);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .promo-content h2 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            margin: 8px 0 20px 0;
+            line-height: 1.3;
+        }
+
+        .promo-img {
+            position: absolute;
+            right: 20px;
+            bottom: 0;
+            max-height: 90%;
+            object-fit: contain;
+        }
+
+        /* --- INSTAGRAM SECTION --- */
+        .instagram-section {
+            padding: 60px 0 80px 0;
+            text-align: center;
+        }
+        .instagram-handle {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-top: -15px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+        .instagram-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+        .instagram-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 190px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.01);
+        }
+        
+        .instagram-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition-smooth);
+        }
+        .instagram-item:hover img {
+            transform: scale(1.06);
+        }
+
+        /* --- FOOTER PERKS --- */
+        .footer-perks {
+            background-color: #fff5f6;
+            padding: 40px 0;
+            border-top: 1px solid #fae1e5;
+        }
+        .perks-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            text-align: center;
+            gap: 20px;
+        }
+        .perk-item i {
+            font-size: 1.6rem;
+            color: var(--primary-pink);
+            margin-bottom: 10px;
+        }
+        .perk-item h4 {
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        .perk-item p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            .perks-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px 20px;
+            }
+            .instagram-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .promo-banner {
+                padding: 35px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar { padding: 15px 0; }
+            .logo { font-size: 1.5rem; }
+            .hero-container { flex-direction: column; text-align: center; gap: 30px; }
+            .hero-image { justify-content: center; }
+            .hero-btns { justify-content: center; }
+            .features-grid { grid-template-columns: 1fr; }
+            .promo-grid { grid-template-columns: 1fr; gap: 20px; }
+            .products-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .product-card { border-radius: 10px; }
+            .product-info { padding: 5px 0; }
+            .nav-links { display: none; } 
+            .section-title { font-size: 1.8rem; }
+            .promo-content h2 { font-size: 1.6rem; }
+            .instagram-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-banner">
+        ✨ <span>FREE SHIPPING</span> ON ALL ORDERS OVER $50 | 30 DAYS EASY RETURNS 
+    </div>
+
+    <header>
+        <div class="container navbar">
+            <div class="logo">
+                <i class="fa-solid fa-spa"></i> Faolany Beauty
+            </div>
+            <nav class="nav-links">
+                <a href="index.html" class="active">Home</a>
+                <a href="shop.html">Shop</a>
+                <a href="skincare.html">Skincare</a>
+                <a href="makeup.html">Makeup</a>
+                <a href="haircare.html">Haircare</a>
+                <a href="perfume.html">Perfume</a>
+                <a href="aboutus.html">About Us</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="nav-icons">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-regular fa-user" id="accountBtn"></i>
+                <i class="fa-solid fa-basket-shopping" id="cartBtn"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="modal-overlay" id="accountModal">
+        <div class="modal-box">
+            <span class="close-modal" id="closeModal">&times;</span>
+            
+            <div id="authFormContainer">
+                <h2>Create Account</h2>
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="username">Full Name</label>
+                        <input type="text" id="username" required placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required placeholder="Create a password">
+                    </div>
+                    <button type="submit" class="btn-primary">Sign Up</button>
+                </form>
+            </div>
+
+            <div id="profileContainer" class="profile-view" style="display: none;">
+                <h2>Your Profile</h2>
+                <div class="profile-avatar">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <div class="profile-info-item">
+                    <strong>Account Name</strong>
+                    <span id="displayUsername">John Doe</span>
+                </div>
+                <div class="profile-info-item">
+                    <strong>Password</strong>
+                    <span id="displayPassword">••••••••</span>
+                </div>
+                <button class="btn-signout" id="signOutBtn">Sign Out</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-drawer">
+            <div class="cart-header">
+                <h2>Basket shopping</h2>
+                <span class="close-cart" id="closeCart">&times;</span>
+            </div>
+            <div class="cart-body">
+                <p>Your cart is completely empty</p>
+            </div>
+            <div class="cart-footer">
+                <div class="cart-total-row">
+                    <span>Total:</span>
+                    <span>$0.00</span>
+                </div>
+                <button class="btn-pay" disabled>Checkout your Products</button>
+            </div>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container hero-container">
+            <div class="hero-content">
+                <p class="hero-tagline">Enhance your natural beauty</p>
+                <h1>Glow Up With <span>Premium Beauty</span> Products</h1>
+                <p>Discover high-quality makeup & skincare that makes you shine every day without compromising on ingredients.</p>
+                <div class="hero-btns">
+                    <button class="btn-primary"><a href="shop.html">SHOP NOW</a></button>
+                    <a href="#" class="btn-secondary">BROWSE COLLECTIONS <i class="fa-solid fa-arrow-right-long"></i></a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="img/image.png" alt="Premium Cosmetics Showcase">
+            </div>
+        </div>
+    </section>
+
+    <div class="features-bar">
+        <div class="container features-grid">
+            <div class="feature-item">
+                <i class="fa-solid fa-truck"></i>
+                <div class="feature-text">
+                    <h4>FREE SHIPPING</h4>
+                    <p>On all orders over $50</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-award"></i>
+                <div class="feature-text">
+                    <h4>HIGH QUALITY</h4>
+                    <p>Premium quality products</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-rotate-left"></i>
+                <div class="feature-text">
+                    <h4>EASY RETURNS</h4>
+                    <p>30 days money back</p>
+                </div>
+            </div>
+            <div class="feature-item">
+                <i class="fa-solid fa-shield-halved"></i>
+                <div class="feature-text">
+                    <h4>SECURE PAYMENT</h4>
+                    <p>100% secure checkout</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="container">
+        <h2 class="section-title">Shop By Category</h2>
+        <div class="categories-grid">
+            <a href="skincare.html" class="category-card">
+                <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=200&auto=format&fit=crop" alt="Skincare">
+                <h3>Skincare</h3>
+                <span>Shop Now &rarr;</span>
+            </a>
+            <a href="makeup.html" class="category-card">
+                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=200&auto=format&fit=crop" alt="Makeup">
+                <h3>Makeup</h3>
+                <span>Shop Now &rarr;</span>
+            </a>
+            <a href="haircare.html" class="category-card">
+                <img src="img/2.png" alt="Haircare">
+                <h3>Haircare</h3>
+                <span>Shop Now &rarr;</span>
+            </a>
+            <a href="makeup.html" class="category-card">
+                <img src="https://images.unsplash.com/photo-1596462502278-27bfdc403348?q=80&w=200&auto=format&fit=crop" alt="Accessories">
+                <h3>Accessories</h3>
+                <span>Shop Now &rarr;</span>
+            </a>
+            <a href="perfume.html" class="category-card">
+                <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=200&auto=format&fit=crop" alt="Fragrance">
+                <h3>Fragrance</h3>
+                <span>Shop Now &rarr;</span>
+            </a>
+        </div>
+    </section>
+
+    <section class="container">
+        <h2 class="section-title">Best Sellers</h2>
+        <div class="products-grid">
+            
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="img/7.png" alt="Hyaluronic Acid Serum">
+                </div>
+                <div class="product-info">
+                    <h3>Hyaluronic Acid Serum</h3>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span>(123)</span>
+                    </div>
+                    <div class="product-price">$24.99</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="img/5.png" alt="Makeup Brush Set">
+                </div>
+                <div class="product-info">
+                    <h3>Makeup Brush Set (10pcs)</h3>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span>(123)</span>
+                    </div>
+                    <div class="product-price">$29.99</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?q=80&w=300&auto=format&fit=crop" alt="Collagen Night Cream">
+                </div>
+                <div class="product-info">
+                    <h3>Collagen Night Cream</h3>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span>(123)</span>
+                    </div>
+                    <div class="product-price">$19.99</div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <span class="sale-badge">Sale</span>
+                    <img src="img/6.png" alt="Matte Lipstick">
+                </div>
+                <div class="product-info">
+                    <h3>Matte Lipstick</h3>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span>(123)</span>
+                    </div>
+                    <div class="product-price">$14.99 <span class="old-price">$19.99</span></div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image-wrapper">
+                    <span class="sale-badge">Sale</span>
+                    <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?q=80&w=300&auto=format&fit=crop" alt="Luxury Perfume">
+                </div>
+                <div class="product-info">
+                    <h3>Luxury Perfume</h3>
+                    <div class="product-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        <span>(123)</span>
+                    </div>
+                    <div class="product-price">$34.99 <span class="old-price">$49.99</span></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="container promo-section">
+        <div class="promo-grid">
+            <div class="promo-banner skincare">
+                <div class="promo-content">
+                    <span>Special Offer</span>
+                    <h2>Up To 30% Off On Skincare Products</h2>
+                    <button class="btn-primary">SHOP NOW</button>
+                </div>
+                <img class="promo-img" src="img/8.png" alt="Skincare Offer">
+            </div>
+            <div class="promo-banner makeup">
+                <div class="promo-content">
+                    <span>New Arrivals</span>
+                    <h2>Fresh & Trendy Makeup Collection</h2>
+                    <button class="btn-primary">DISCOVER NOW</button>
+                </div>
+                <img class="promo-img" src="img/9.png" alt="Makeup Offer">
+            </div>
+        </div>
+    </section>
+
+    <section class="instagram-section">
+        <h2 class="section-title">Follow Us On Instagram</h2>
+        <div class="instagram-handle">@Faolany.beauty</div>
+        <div class="container"> <div class="instagram-grid">
+                <div class="instagram-item"><img src="img/11.png" alt="Insta 1"></div>
+                <div class="instagram-item"><img src="img/10.png" alt="Insta 2"></div>
+                <div class="instagram-item"><img src="img/12.png" alt="Insta 3"></div>
+                <div class="instagram-item"><img src="img/13.png" alt="Insta 4"></div>
+                <div class="instagram-item"><img src="img/14.png" alt="Insta 5"></div>
+                <div class="instagram-item"><img src="img/15.png" alt="Insta 6"></div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-perks">
+        <div class="container perks-grid">
+            <div class="perk-item">
+                <i class="fa-solid fa-frog"></i>
+                <h4>CRUELTY FREE</h4>
+                <p>We never test on animals</p>
+            </div>
+            <div class="perk-item">
+                <i class="fa-solid fa-leaf"></i>
+                <h4>NATURAL INGREDIENTS</h4>
+                <p>Clean & safe for your skin</p>
+            </div>
+            <div class="perk-item">
+                <i class="fa-solid fa-hand-holding-heart"></i>
+                <h4>DERMATOLOGICALLY TESTED</h4>
+                <p>Gentle & safe formulas</p>
+            </div>
+            <div class="perk-item">
+                <i class="fa-regular fa-comments"></i>
+                <h4>CUSTOMER SUPPORT</h4>
+                <p>We're here to help you</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ACCOUNT ELEMENTS
+        const accountBtn = document.getElementById('accountBtn');
+        const accountModal = document.getElementById('accountModal');
+        const closeModal = document.getElementById('closeModal');
+        const registerForm = document.getElementById('registerForm');
+        const authFormContainer = document.getElementById('authFormContainer');
+        const profileContainer = document.getElementById('profileContainer');
+        const displayUsername = document.getElementById('displayUsername');
+        const displayPassword = document.getElementById('displayPassword');
+        const signOutBtn = document.getElementById('signOutBtn');
+
+        // CART ELEMENTS
+        const cartBtn = document.getElementById('cartBtn');
+        const cartOverlay = document.getElementById('cartOverlay');
+        const closeCart = document.getElementById('closeCart');
+
+        // --- ACCOUNT HANDLERS ---
+        function updateModalState() {
+            const storedUser = localStorage.getItem('beautyUser');
+            if (storedUser) {
+                const userData = JSON.parse(storedUser);
+                authFormContainer.style.display = 'none';
+                profileContainer.style.display = 'block';
+                displayUsername.textContent = userData.name;
+                displayPassword.textContent = userData.password;
+            } else {
+                authFormContainer.style.display = 'block';
+                profileContainer.style.display = 'none';
+            }
+        }
+
+        accountBtn.addEventListener('click', () => {
+            updateModalState();
+            accountModal.classList.add('active');
+        });
+
+        closeModal.addEventListener('click', () => {
+            accountModal.classList.remove('active');
+        });
+
+        accountModal.addEventListener('click', (e) => {
+            if (e.target === accountModal) {
+                accountModal.classList.remove('active');
+            }
+        });
+
+        registerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nameInput = document.getElementById('username').value;
+            const passwordInput = document.getElementById('password').value;
+            localStorage.setItem('beautyUser', JSON.stringify({ name: nameInput, password: passwordInput }));
+            updateModalState();
+            registerForm.reset();
+        });
+
+        signOutBtn.addEventListener('click', () => {
+            localStorage.removeItem('beautyUser');
+            updateModalState();
+        });
+
+        // --- CART DRAWER HANDLERS ---
+        cartBtn.addEventListener('click', () => {
+            cartOverlay.classList.add('active');
+        });
+
+        closeCart.addEventListener('click', () => {
+            cartOverlay.classList.remove('active');
+        });
+
+        cartOverlay.addEventListener('click', (e) => {
+            if (e.target === cartOverlay) {
+                cartOverlay.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
